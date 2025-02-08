@@ -10,13 +10,6 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Enable CORS for specific domain
-app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your frontend URL in production
-  methods: ['GET', 'POST'], // Allow only specific methods
-  allowedHeaders: ['Content-Type'], // Allow only specific headers
-}));
-
 
 
 const razorpay = new Razorpay({
