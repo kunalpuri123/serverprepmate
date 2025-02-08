@@ -12,13 +12,12 @@ app.use(express.urlencoded({ extended: false }));
 
 // Enable CORS for specific domain
 app.use(cors({
-  origin: "http://localhost:3000", // Only allow this domain
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  allowedHeaders: "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
-  credentials: true,
+  origin: 'http://localhost:3000', // Replace with your frontend URL in production
+  methods: ['GET', 'POST'], // Allow only specific methods
+  allowedHeaders: ['Content-Type'], // Allow only specific headers
 }));
 
-app.options('*', cors());
+
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
@@ -68,6 +67,8 @@ app.post("/order/validate", async (req, res) => {
     res.status(400).json({ success: false, message: "Invalid signature" });
   }
 });
+
+app.options('*', cors());
 
 // Handle 404 for undefined routes
 app.use((req, res) => {
