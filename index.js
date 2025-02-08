@@ -9,10 +9,7 @@ const PORT = process.env.PORT || 4000; // Provide a default port
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({
-  origin: 'https://localhost:8080/', // Replace with your frontend's domain
-  methods: ['GET', 'POST'],
-}));
+app.use(cors());
 
 const razorpay = new Razorpay({ // Initialize Razorpay outside the route handler
   key_id: process.env.RAZORPAY_KEY_ID,
