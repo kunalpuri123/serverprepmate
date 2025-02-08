@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 4000; // Provide a default port
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+const corsOptions = {
+  origin: /\.onrender\.com$/,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",};
+app.use(cors(corsOptions));
 
 const razorpay = new Razorpay({ // Initialize Razorpay outside the route handler
   key_id: process.env.RAZORPAY_KEY_ID,
